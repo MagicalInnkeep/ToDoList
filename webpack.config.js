@@ -34,10 +34,5 @@ module.exports = {
         type: "asset/resource",
       },
     ],
-  },
-  scrips: {
-    "build": "webpack",
-    "dev": "webpack server",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
   }
 };
