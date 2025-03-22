@@ -13,9 +13,16 @@
         <div class="settings"></div>
     </div>
     <div class="main" id="main">
-        <button class="togglebtn" id="lightdark" onclick="toggleMode()">
-            <img class="svg-icon" id="modeIcon" src="./img/DarkMode.svg" width="24" height="24" alt="Dark Mode">
-        </button>  
+        <div class="topbar">
+            <div class="logo"><img class="svg-icon" id="logo" src="./img/Edit2.svg" width="20" height="20" alt="logo"> Taskomancy</div>
+            <div class="search">
+                <input id="searchbar" onkeyup="search_task()" type="text" name="search">
+                <ul id="list-holder"></ul>
+            </div>
+            <button class="togglebtn" id="lightdark" onclick="toggleMode()">
+                <img class="svg-icon" id="modeIcon" src="./img/DarkMode.svg" width="24" height="24" alt="Dark Mode">
+            </button>  
+        </div>
         <div class="content"></div>
         <div class="botbar"></div>
     </div>
