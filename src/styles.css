@@ -86,3 +86,13 @@ body {
     background: var(--text-color);
     color: var(--bg-color);
 }
+
+/* Default (Light Mode) - Black SVG */
+.svg-icon {
+    filter: invert(0%);
+}
+
+/* Dark Mode - Light Gray SVG */
+.dark-mode .svg-icon {
+    filter: invert(86%);
+}

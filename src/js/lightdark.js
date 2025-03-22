@@ -1,21 +1,28 @@
 let modeStatus=0;
 
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+import darkModeIcon from '../img/DarkMode.svg';
+import lightModeIcon from '../img/LightMode.svg';
+
+const modeIcon = document.querySelector("#modeIcon");
+
+/* Switch to darkMode*/
 function darkMode() {
-    document.getElementById("lightdark").textContent="🌙";
+    modeIcon.src = lightModeIcon; // Use the imported image path
+    modeIcon.alt = "Light Mode";
     document.body.classList.toggle("dark-mode");
     modeStatus=1;
   }
   
-  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+  /* Switch to lightMode */
 function lightMode() {
-    document.getElementById("lightdark").textContent="☀️";
+    modeIcon.src = darkModeIcon; // Use the imported image path
+    modeIcon.alt = "Dark Mode";
     document.body.classList.toggle("dark-mode");
     modeStatus=0;
   } 
 
+   /* toggle Modes */
 export function toggleMode() {
     modeStatus==1 ? lightMode() : darkMode();
 }
-
 
