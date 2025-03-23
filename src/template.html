@@ -36,6 +36,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Popup Form -->
+<div id="task-form-popup" class="popup-form">
+    <div class="popup-content">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <h3>Add New Task</h3>
+        <form id="task-form">
+            <label for="task-title">Title:</label>
+            <input type="text" id="task-title" required><br>
+            <label for="task-desc">Description:</label>
+            <textarea id="task-desc" required></textarea><br>
+            <label for="task-due">Due Date:</label>
+            <input type="date" id="task-due"><br>
+            <label for="task-priority">Priority:</label>
+            <select id="task-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select><br>
+            <label for="task-important">Important:</label>
+            <input type="checkbox" id="task-important"><br><br>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
 
