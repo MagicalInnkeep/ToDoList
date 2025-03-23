@@ -23,8 +23,18 @@
                 <img class="svg-icon" id="modeIcon" src="./img/DarkMode.svg" width="24" height="24" alt="Dark Mode">
             </button>  
         </div>
-        <div class="content"></div>
-        <div class="botbar"></div>
+        <div class="content">
+            <div class="tasks"></div>
+            <button class="newTask" id="newTask" onclick="addTask()">
+                <img class="svg-icon" id="modeIcon" src="./img/AddTask.svg" width="24" height="24" alt="Dark Mode">
+            </button>
+        </div>
+        <div class="botbar">
+            <div class="version">Taskomancy v0.0.1</div>
+            <div class="clock">
+                <span id='ct' ></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>

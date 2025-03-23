@@ -63,8 +63,10 @@ body {
 /* Main Content */
 .main {
     margin-left: 50px;
-    padding: 20px;
     transition: margin-left 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 /* Top Bar Layout */
@@ -73,6 +75,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+    flex-shrink: 0;
 }
 
 /* Logo Section */
@@ -178,3 +181,56 @@ body {
 .dark-mode .svg-icon {
     filter: invert(86%);
 }
+
+.content{
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.botbar {
+    height: 25px;
+    flex-shrink: 0;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 5px;
+    transition: width 0.5s ease, background 0.3s ease, color 0.3s ease;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Task Item Container */
+.task-item, .newTask {
+    background: var(--sidebar-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+    border: none;
+}
+
+/* Task Header */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Task Description */
+.task-desc {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+/* Task Footer */
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
