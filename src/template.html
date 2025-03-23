@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="sidebar" id="mySidebar">
-        <button class="togglebtn" onclick="toggleNav()">☰</button>  
+        <button class="togglebtn" id="sidebar-btn">☰</button>  
         <div class="fixed_categories"></div>
         <div class="custom_categories"></div>
         <div class="settings"></div>
@@ -16,21 +16,21 @@
         <div class="topbar">
             <div class="logo"><img class="svg-icon" id="logo" src="./img/Edit2.svg" width="20" height="20" alt="logo"> Taskomancy</div>
             <div class="search">
-                <input id="searchbar" onkeyup="search_task()" type="text" name="search">
+                <input id="searchbar" type="text" name="search">
                 <ul id="list-holder"></ul>
             </div>
-            <button class="togglebtn" id="lightdark" onclick="toggleMode()">
+            <button class="togglebtn" id="lightdark">
                 <img class="svg-icon" id="modeIcon" src="./img/DarkMode.svg" width="24" height="24" alt="Dark Mode">
             </button>  
         </div>
         <div class="content">
             <div class="tasks"></div>
-            <button class="newTask" id="newTask" onclick="addTask()">
-                <img class="svg-icon" id="modeIcon" src="./img/AddTask.svg" width="24" height="24" alt="Dark Mode">
+            <button class="newTask" id="newTask">
+                <img class="svg-icon" id="addTask" src="./img/AddTask.svg" width="24" height="24" alt="AddTask">
             </button>
         </div>
         <div class="botbar">
-            <div class="version">Taskomancy v0.0.1</div>
+            <div class="version">Taskomancy v0.0.2</div>
             <div class="clock">
                 <span id='ct' ></span>
             </div>
