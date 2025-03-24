@@ -255,11 +255,14 @@ body {
     padding: 20px;
     border-radius: 5px;
     width: 300px;
+    color: var(--toggle-btn-text);
 }
 
 #task-form input, #task-form textarea, #task-form select {
     width: 100%;
     margin-bottom: 10px;
+    background-color: var(--bg-color);
+    color: var(--toggle-btn-text);
 }
 
 #close-btn {

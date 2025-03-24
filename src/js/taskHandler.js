@@ -46,19 +46,12 @@ export class TaskManager {
     };
 
     search_task(query) {
-        let matches;
-            
-        for (let i = 0; i < this.tasks.length; i++) {
-          let obj = this.tasks[i];
-      
-          // Check if any field contains the search input
-          let check = Object.values(obj).some(value => 
-            typeof value === "string" && value.toLowerCase().includes(query)
-          );
-      
-          if (check) {
-            matches.push(obj);
-          }
-        }
-      }
+        query = query.toLowerCase(); // Convert search query to lowercase
+        return this.tasks.filter(task => 
+            Object.values(task).some(value => 
+                typeof value === "string" && value.toLowerCase().includes(query)
+            )
+        );
+    }
+    
 };

@@ -6,7 +6,8 @@ import {display_ct} from "./datetime";
 
 export class UI{
     constructor(){
-        this.TaskManager = new TaskManager;
+        this.taskManager = new TaskManager;
+        console.log(this.taskManager);
         this.init();
     }
 
@@ -17,6 +18,7 @@ export class UI{
         display_ct();
         
         this.initEvents();
+        this.renderTasks(this.taskManager.getTasks());
     }
 
     initEvents(){
@@ -25,6 +27,8 @@ export class UI{
         document.querySelector("#lightdark").addEventListener('click',toggleMode);
         document.querySelector("#addTask").addEventListener('click',this.showAddTaskForm);
         document.querySelector("#close-btn").addEventListener('click',this.closeAddTaskForm);
+        document.querySelector("#task-form").addEventListener('submit',(event) => this.handleFormSubmit(event));
+
     }
 
     showAddTaskForm() {
@@ -48,22 +52,20 @@ export class UI{
         document.querySelector("#duedate").value = `${year}-${month}-${day}`;
     };
 
-    handleFormSubmit(e) {
-        e.preventDefault();
-        const title = document.querySelector("#title").value.trim();
-        if (title.length > 0) {
-            const task = new Task(
-                document.querySelector("#title").value,
-                document.querySelector("#description").value,
-                document.querySelector("#duedate").value,
-                document.querySelector(".current-priority").textContent,
-                document.querySelector("#category").value
-            );
-            this.taskManager.addTask(task);
-            this.renderTasks(this.taskManager.getTasks());
-            this.updateCategory();
-            this.closeForm();
-        };
+    handleFormSubmit(event){
+        console.log("hoi");
+        event.preventDefault();
+        const task = new Task(
+            document.querySelector("#task-title").value,
+            document.querySelector("#task-desc").value,
+            document.querySelector("#task-due").value,
+            document.querySelector("#task-priority").value,
+            document.querySelector("#task-category").value
+        );
+        console.log(task);
+        this.taskManager.addTask(task);
+        this.renderTasks(this.taskManager.getTasks());
+        this.closeAddTaskForm();
     };
 
     setPriority(btn) {
@@ -90,24 +92,17 @@ export class UI{
         this.renderTasks(tasks);
     };
 
-    updateCategory() {
-        const category = document.querySelector("#category").value;
-        document.querySelectorAll(".options-btns").forEach(btn => {
-            btn.classList.remove("active-btn");
-            if (btn.value === category) {
-                btn.classList.add("active-btn");
-            };
-        });
-    };
 
     renderTasks(tasks) {
-        const ul = document.querySelector("ul");
-        ul.innerHTML = "";
+        const tasksDiv = document.querySelector('.tasks');
+        tasksDiv.innerHTML = ""; // Clear existing tasks
+        console.log(tasks);
+
         tasks.forEach((task, index) => {
-            const li = document.createElement("li");
-            li.className = "task-box";
-            li.style.backgroundColor = this.getPriorityColor(task.priority);
-            li.innerHTML = `
+            const taskElement = document.createElement('div');
+            taskElement.classList.add('task-item');
+
+            taskElement.innerHTML = `
                 <input type="checkbox" id="todo-${index}" ${task.isComplete ? 'checked' : ''} />
                 <label class="custom-checkbox" for="todo-${index}">
                 </label>
@@ -119,15 +114,13 @@ export class UI{
                 <button class="delete-btn">
                 </button>
             `;
-            ul.appendChild(li);
-
-            const deleteBtn = li.querySelector(".delete-btn");
+            tasksDiv.appendChild(taskElement);
+            const deleteBtn = taskElement.querySelector(".delete-btn");
             deleteBtn.addEventListener("click", () => {
                 this.taskManager.deleteTask(index);
                 this.renderTasks(this.taskManager.getTasks());
             });
-
-            const checkBox = li.querySelector("input");
+            const checkBox = taskElement.querySelector("input");
             checkBox.addEventListener("change", () => {
                 this.taskManager.toggleTaskCompletion(index);
                 this.renderTasks(this.taskManager.getTasks());
