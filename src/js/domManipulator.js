@@ -25,7 +25,7 @@ export class UI{
         console.log("initEvents")
         document.querySelector("#sidebar-btn").addEventListener('click',toggleNav);
         document.querySelector("#lightdark").addEventListener('click',toggleMode);
-        document.querySelector("#addTask").addEventListener('click',this.showAddTaskForm);
+        document.querySelector("#newTask").addEventListener('click',this.showAddTaskForm);
         document.querySelector("#close-btn").addEventListener('click',this.closeAddTaskForm);
         document.querySelector("#task-form").addEventListener('submit',(event) => this.handleFormSubmit(event));
 
