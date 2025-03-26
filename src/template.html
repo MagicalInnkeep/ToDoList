@@ -8,9 +8,20 @@
 <body>
     <div class="sidebar" id="mySidebar">
         <button class="togglebtn" id="sidebar-btn">☰</button>  
-        <div class="fixed_categories"></div>
-        <div class="custom_categories"></div>
-        <div class="settings"></div>
+        <div class="globalFilters">
+            <button class="sidebar-btn" id="default-btn"><img class="svg-icon sidebar-img" id="default-img" src="./img/TaskNotDone.svg" alt="default"><p class="bigSidebar">Default</p></button>
+            <button class="sidebar-btn" id="date-btn"><img class="svg-icon sidebar-img" id="date-img" src="./img/Calendar.svg" alt="calendar"><p class="bigSidebar">SortbyDate</p></button>
+            <button class="sidebar-btn" id="prio-btn"><img class="svg-icon sidebar-img" id="prio-img" src="./img/Prio.svg" alt="priority"><p class="bigSidebar">SortbyPriority</p></button>
+            <button class="sidebar-btn" id="done-btn"><img class="svg-icon sidebar-img" id="done-img" src="./img/TaskDone.svg" alt="done"><p class="bigSidebar">ShowDone </p></button>
+        </div>
+        <div class="catFilters">
+            <button class="sidebar-btn" id="work-btn"><img class="svg-icon sidebar-img" id="work-img" src="./img/EditTask.svg" alt="Work"><p class="bigSidebar">Work</p></button>
+            <button class="sidebar-btn" id="edu-btn"><img class="svg-icon sidebar-img" id="edu-img" src="./img/Prio.svg" alt="education"><p class="bigSidebar">Education</p></button>
+            <button class="sidebar-btn" id="soc-btn"><img class="svg-icon sidebar-img" id="soc-img" src="./img/History.svg" alt="social"><p class="bigSidebar">Social</p></button>
+            <button class="sidebar-btn" id="sport-btn"><img class="svg-icon sidebar-img" id="sport-img" src="./img/History.svg" alt="sport"><p class="bigSidebar">Sport</p></button>
+            <button class="sidebar-btn" id="diverse-btn"><img class="svg-icon sidebar-img" id="diverse-img" src="./img/History.svg" alt="diverse"><p class="bigSidebar">Diverse</p></button>
+        </div>
+        <button class="sidebar-btn" id="settings-btn"><img class="svg-icon sidebar-img" id="settings-img" src="./img/Settings.svg" alt="settings"><p class="bigSidebar">Settings</p></button>
     </div>
     <div class="main" id="main">
         <div class="topbar">

@@ -64,7 +64,7 @@ export class UI{
         );
         console.log(task);
         this.taskManager.addTask(task);
-        this.renderTasks(this.taskManager.getTasks());
+        this.renderTasks(this.taskManager.getTasks().filter(task => !task.isComplete));
         this.closeAddTaskForm();
     };
 
@@ -78,16 +78,7 @@ export class UI{
         btn.classList.add("active-btn");
         const category = btn.value;
 
-        let tasks;
-        if (this.isPendingView) {
-            tasks = category === "all"
-                ? this.taskManager.getPendingTasks()
-                : this.taskManager.getTasksByCategory(category).filter(task => !task.isComplete);
-        } else {
-            tasks = category === "all"
-                ? this.taskManager.getTasks()
-                : this.taskManager.getTasksByCategory(category);
-        };
+        let tasks = this.taskManager.getTasksByCategory(category).filter(task => !task.isComplete);
 
         this.renderTasks(tasks);
     };
@@ -96,7 +87,6 @@ export class UI{
     renderTasks(tasks) {
         const tasksDiv = document.querySelector('.tasks');
         tasksDiv.innerHTML = ""; // Clear existing tasks
-        console.log(tasks);
 
         tasks.forEach((task, index) => {
             const taskElement = document.createElement('div');
@@ -107,13 +97,17 @@ export class UI{
                 <label class="custom-checkbox" for="todo-${index}">
                 </label>
                 <label for="todo-${index}" class="task-text">
+                    <div class="task-header">
                     <p class="taskbox-category">${task.category}</p>
+                    <p class="due-date">${task.dueDate}</p>
+                    </div>
                     <p class="taskbox-title todo-title">${task.title}</p>
                     <p class="taskbox-description todo-description">${task.description}</p>
                 </label>
                 <button class="delete-btn">
                 </button>
             `;
+            taskElement.style.borderLeftColor=this.getPriorityColor(task.priority);
             tasksDiv.appendChild(taskElement);
             const deleteBtn = taskElement.querySelector(".delete-btn");
             deleteBtn.addEventListener("click", () => {
@@ -130,12 +124,12 @@ export class UI{
 
     getPriorityColor(priority) {
         switch (priority) {
-            case "Low":
-                return "#B2DFB2"; 
-            case "Medium":
-                return "#FFD699"; 
-            case "High":
-                return "#FFCACA";
+            case "low":
+                return "#1da811"; 
+            case "medium":
+                return "#a88a11"; 
+            case "high":
+                return "#c9231a";
             default:
                 return "#FFFFFF"; 
         };
