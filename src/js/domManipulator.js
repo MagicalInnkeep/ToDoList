@@ -28,7 +28,15 @@ export class UI{
         document.querySelector("#newTask").addEventListener('click',this.showAddTaskForm);
         document.querySelector("#close-btn").addEventListener('click',this.closeAddTaskForm);
         document.querySelector("#task-form").addEventListener('submit',(event) => this.handleFormSubmit(event));
-
+        document.querySelector("#default-btn").addEventListener('click',(event) => this.showTasksNotDone());
+        document.querySelector("#done-btn").addEventListener('click',(event) => this.showTasksDone());
+        document.querySelector("#date-btn").addEventListener('click',(event) => this.showTasksDate());
+        document.querySelector("#prio-btn").addEventListener('click',(event) => this.showTasksPrio());
+        document.querySelector("#work-btn").addEventListener('click',(event) => this.showTasksCat('work'));
+        document.querySelector("#edu-btn").addEventListener('click',(event) => this.showTasksCat('education'));
+        document.querySelector("#soc-btn").addEventListener('click',(event) => this.showTasksCat('social'));
+        document.querySelector("#sport-btn").addEventListener('click',(event) => this.showTasksCat('sport'));
+        document.querySelector("#diverse-btn").addEventListener('click',(event) => this.showTasksCat('diverse'));
     }
 
     showAddTaskForm() {
@@ -53,7 +61,6 @@ export class UI{
     };
 
     handleFormSubmit(event){
-        console.log("hoi");
         event.preventDefault();
         const task = new Task(
             document.querySelector("#task-title").value,
@@ -73,16 +80,35 @@ export class UI{
         btn.classList.add("current-priority");
     };
 
-    filterTasksByCategory(btn) {
-        document.querySelectorAll(".options-btns").forEach(otherBtn => otherBtn.classList.remove("active-btn"));
-        btn.classList.add("active-btn");
-        const category = btn.value;
+    showTasksDone(){
+        this.renderTasks(this.taskManager.getTasks()
+            .filter(task => task.isComplete));
+    }
 
-        let tasks = this.taskManager.getTasksByCategory(category).filter(task => !task.isComplete);
+    showTasksNotDone(){
+        this.renderTasks(this.taskManager.getTasks()
+            .filter(task => !task.isComplete));
+    }
 
-        this.renderTasks(tasks);
-    };
+    showTasksPrio(){
+        const priorityOrder = { high: 3, medium: 2, low: 1 };
+        this.renderTasks(
+            this.taskManager.getTasks()
+                .filter(task => !task.isComplete)
+                .sort((a, b) => (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0))
+        );
+    }
 
+    showTasksDate(){
+        this.renderTasks(this.taskManager.getTasks()
+            .filter(task => !task.isComplete)
+            .sort((a, b) => a.dueDate - b.dueDate));
+    }
+
+    showTasksCat(category){
+        this.renderTasks(this.taskManager.getTasks().
+            filter(task => !task.isComplete && task.category === category));
+    }
 
     renderTasks(tasks) {
         const tasksDiv = document.querySelector('.tasks');
@@ -135,28 +161,5 @@ export class UI{
         };
     };
 
-    showPendingTasks() {
-        this.isPendingView = true; 
-        const previewContainer = document.querySelector(".toppreview-container");
-        previewContainer.style.display = "none"; 
-        const mainElement = document.querySelector("main");
-        mainElement.style.paddingTop = "2rem";
-        const pendingTasks = this.taskManager.getPendingTasks();
-        this.renderTasks(pendingTasks);
-    };
-
-    showAllTasks() {
-        this.isPendingView = false; 
-        const previewContainer = document.querySelector(".toppreview-container");
-        previewContainer.style.display = "flex"; 
-        const mainElement = document.querySelector("main");
-        mainElement.style.paddingTop = "0rem"; 
-        this.renderTasks(this.taskManager.getTasks());
-    };
-
-    setActiveHeaderButton(btn) {
-        document.querySelectorAll(".header-btns").forEach(otherBtn => otherBtn.classList.remove("headerbtn-line"));
-        btn.classList.add("headerbtn-line");
-    };
 
 }
